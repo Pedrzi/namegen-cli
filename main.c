@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 {
     char *adjective_file = "english-adjectives.txt";
     char *noun_file = "english-nouns.txt";
+    char *spacer = NULL;
 
     for (int i = 1; i < argc; i++)
     {
@@ -18,9 +19,11 @@ int main(int argc, char *argv[])
             adjective_file = argv[++i];
         else if (strcmp(argv[i], "-n") == 0)
             noun_file = argv[++i];
+        else if (strcmp(argv[i], "-s") == 0)
+            spacer = argv[++i];
         else
         {
-            fprintf(stderr, "Usage: %s [-a adjective_file] [-n noun_file]\n", argv[0]);
+            fprintf(stderr, "Usage: %s [-a adjective_file] [-n noun_file] [-s spacer]\n", argv[0]);
             return 1;
         }
     }
@@ -40,7 +43,12 @@ int main(int argc, char *argv[])
 
     int num = rand() % 100;
 
-    printf("%s%s%02d\n", adj, noun, num);
+    if (spacer)
+    {
+        printf("%s%s%s%s%02d\n", adj, spacer, noun, spacer, num);
+    }
+    else
+        printf("%s%s%02d\n", adj, noun, num);
 
     free(adj);
     free(noun);

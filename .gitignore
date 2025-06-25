@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# VsCode specific
+.vscode/
+
+# Make files
+Makefile
+
+# Test files
+*.test
